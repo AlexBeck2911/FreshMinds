@@ -6,12 +6,12 @@
   <session-factory>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mariadb://81.169.214.51:3306/FreshMinds</property>
+    <property name="hibernate.connection.url">jdbc:mariadb://81.169.214.51:3306/FreshMinds Kategorien</property>
     <property name="hibernate.connection.username">rb</property>
     <property name="hibernate.connection.password">XD7$kzahR!9R</property>
     <property name="show_sql">true</property>
+    
+    <mapping class="de.freshminds.entities.Category" />
         
-    <mapping class="de.freshminds.entities.Article" />
-     
   </session-factory>
 </hibernate-configuration>
