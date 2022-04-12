@@ -11,15 +11,20 @@ import javax.persistence.Table;
 @Table(name = "Category")
 public class Category {
 
-	private int categoryNumber;
-	private String categoryDesignation;
-
-	public Category() {
-	}
-
 	@Id
 	@Column(name = "CategoryNumber")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int categoryNumber;
+	
+	@Column(name = "CategoryDesignation", length = 128, nullable = true, unique = false)
+	private String categoryDesignation;
+	
+	public Category() {}
+
+	public Category(int categoryNumber, String categoryDesignation) {
+		this.categoryNumber = categoryNumber;
+		this.categoryDesignation = categoryDesignation;
+	}
+
 	public int getCategoryNumber() {
 		return categoryNumber;
 	}

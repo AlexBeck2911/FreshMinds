@@ -6,18 +6,32 @@ import javax.persistence.*;
 @Table(name = "Article")
 public class Article {
 
+	@Id
+	@Column(name = "ArticleNumber", length = 128, nullable = true, unique = true)
 	private int articleNumber;
+	
+	@Column(name = "ArticleName", length = 128, nullable = true, unique = false)
 	private String articleName;
+	
+	@Column(name = "ArticlePrice", precision = 10, scale = 2)
 	private double articlePrice;
+	
+	@Column(name = "ArticleOrigin", length = 3, nullable = true, unique = false)
 	private String articleOrigin;
+	
+	@Column(name = "ArticleCategory", precision = 10, scale = 2)
 	private int articleCategory;
 
-	public Article() {
+	public Article() {}
+	
+	public Article(int articleNumber, String articleName, double articlePrice, String articleOrigin, int articleCategory) {
+		this.articleNumber = articleNumber;
+		this.articleName = articleName;
+		this.articlePrice = articlePrice;
+		this.articleOrigin = articleOrigin;
+		this.articleCategory = articleCategory;		
 	}
 
-	@Id
-	@Column(name = "ArticleNumber")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getArticleNumber() {
 		return articleNumber;
 	}

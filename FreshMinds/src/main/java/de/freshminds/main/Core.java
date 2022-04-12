@@ -47,15 +47,12 @@ public class Core {
     	
     	Core core = new Core();
     	core.setup();
+    	  	
+    	DatabaseMethods.fillArticlesTable();
+    	DatabaseMethods.fillCategoriesTable();
     	
-    	//ArticleManager.create(1, "Bananen", 1.50, "SPA", 1);
-    	//ArticleManager.update(1, "Bananen", 1.60, "SPA", 1);
-    	//ArticleManager.delete(1);
-    	
-    	//CategoryManager.create(1, "Obst");
-    	
-    	System.out.println(DatabaseMethods.getCategoryDesignationByArticleNumber(5));
-    	
+    	System.out.println(DatabaseMethods.getCategoryDesignationByArticleNumber(1005));
+    	   	
     	core.exit();
     	
     }
