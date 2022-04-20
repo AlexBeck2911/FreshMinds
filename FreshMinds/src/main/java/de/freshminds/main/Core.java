@@ -12,20 +12,20 @@ import de.freshminds.manager.CategoryManager;
 
 public class Core {
 	
-	public static SessionFactory freshMindsSessionFactory;
-	public static SessionFactory freshmindsCategoriesSessionFactory;
+	public static SessionFactory articlesSessionFactory;
+	public static SessionFactory customerSessionFactory;
 	 
     protected void setup() {
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
     	        .configure()
     	        .build();
     	try {
-    		freshMindsSessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    		articlesSessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     		
     		Configuration cfg = new Configuration();
-    		cfg.configure("categories.cfg.xml");
+    		cfg.configure("customerDatabase.cfg.xml");
     		
-    		freshmindsCategoriesSessionFactory = cfg.buildSessionFactory();
+    		customerSessionFactory = cfg.buildSessionFactory();
     		
     	} catch (Exception e) {
     	    StandardServiceRegistryBuilder.destroy(registry);
@@ -34,7 +34,8 @@ public class Core {
     }
  
     protected void exit() {
-    	freshMindsSessionFactory.close();
+    	articlesSessionFactory.close();
+    	customerSessionFactory.close();
     }
  
     public static void main(String[] args) {
@@ -50,8 +51,6 @@ public class Core {
     	  	
     	DatabaseMethods.fillArticlesTable();
     	DatabaseMethods.fillCategoriesTable();
-    	
-    	System.out.println(DatabaseMethods.getCategoryDesignationByArticleNumber(1005));
     	   	
     	core.exit();
     	

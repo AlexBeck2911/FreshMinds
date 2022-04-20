@@ -13,7 +13,7 @@ public class CategoryManager {
 		category.setCategoryNumber(categoryNumber);
 		category.setCategoryDesignation(categoryDesignation);
 
-		Session session = Core.freshmindsCategoriesSessionFactory.openSession();
+		Session session = Core.articlesSessionFactory.openSession();
 		session.beginTransaction();
 
 		session.save(category);
@@ -28,7 +28,7 @@ public class CategoryManager {
 		category.setCategoryNumber(categoryNumber);
 		category.setCategoryDesignation(categoryDesignation);
 
-		Session session = Core.freshmindsCategoriesSessionFactory.openSession();
+		Session session = Core.articlesSessionFactory.openSession();
 		session.beginTransaction();
 
 		session.update(category);
@@ -42,7 +42,7 @@ public class CategoryManager {
 		Category category = new Category();
 		category.setCategoryNumber(categoryNumber);
 	 
-	    Session session = Core.freshmindsCategoriesSessionFactory.openSession();
+	    Session session = Core.articlesSessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(category);

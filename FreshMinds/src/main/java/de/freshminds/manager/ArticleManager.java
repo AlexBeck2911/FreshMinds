@@ -17,7 +17,7 @@ public class ArticleManager {
 		article.setArticleOrigin(articleOrigin);
 		article.setArticleCategory(articleCategory);
 
-		Session session = Core.freshMindsSessionFactory.openSession();
+		Session session = Core.articlesSessionFactory.openSession();
 		session.beginTransaction();
 
 		session.save(article);
@@ -36,7 +36,7 @@ public class ArticleManager {
 		article.setArticleOrigin(articleOrigin);
 		article.setArticleCategory(articleCategory);
 
-		Session session = Core.freshMindsSessionFactory.openSession();
+		Session session = Core.articlesSessionFactory.openSession();
 		session.beginTransaction();
 
 		session.update(article);
@@ -50,7 +50,7 @@ public class ArticleManager {
 		Article article = new Article();
 		article.setArticleNumber(articleNumber);
 	 
-	    Session session = Core.freshMindsSessionFactory.openSession();
+	    Session session = Core.articlesSessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(article);

@@ -29,11 +29,11 @@ public class DatabaseMethods {
 		articles.add(new Article(2002, "Doppelbrötchen", 0.21, "GER", 2));
 		articles.add(new Article(2003, "Vollkornbrötchen", 0.22, "GER", 2));
 		
-		Session freshMindsSession = Core.freshMindsSessionFactory.openSession();
+		Session freshMindsSession = Core.articlesSessionFactory.openSession();
 		freshMindsSession.beginTransaction();
 		
 		for(Article article : articles)  {
-			freshMindsSession.save(article);
+			freshMindsSession.saveOrUpdate(article);
 		}
 		freshMindsSession.getTransaction().commit();
 		freshMindsSession.close();
@@ -46,27 +46,14 @@ public class DatabaseMethods {
 		categories.add(new Category(1, "Brot"));
 		categories.add(new Category(2, "Brötchen"));
 		
-		Session freshMindsSession = Core.freshmindsCategoriesSessionFactory.openSession();
+		Session freshMindsSession = Core.articlesSessionFactory.openSession();
 		freshMindsSession.beginTransaction();
 		
 		for(Category category : categories)  {
-			freshMindsSession.save(category);
+			freshMindsSession.saveOrUpdate(category);
 		}
 		freshMindsSession.getTransaction().commit();
 		freshMindsSession.close();
-	}
-	
-	
-	
-	public static String getCategoryDesignationByArticleNumber(int articleNumber) {
-		
-	    Session freshMindsSession = Core.freshMindsSessionFactory.openSession();
-	    Article article = (Article) freshMindsSession.get(Article.class, articleNumber);
-	    
-	    Session freshMindsCategoriesSession = Core.freshmindsCategoriesSessionFactory.openSession();
-	    Category category = (Category) freshMindsCategoriesSession.get(Category.class, article.getArticleCategory());
-	    
-	    return category.getCategoryDesignation();
 	}
 
 }
