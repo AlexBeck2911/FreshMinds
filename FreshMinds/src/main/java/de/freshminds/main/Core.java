@@ -15,7 +15,7 @@ public class Core {
 	public static SessionFactory articlesSessionFactory;
 	public static SessionFactory customerSessionFactory;
 	 
-    protected void setup() {
+    public static void setup() {
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
     	        .configure()
     	        .build();

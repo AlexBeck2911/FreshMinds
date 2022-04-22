@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.freshminds.entities.Customer;
+import de.freshminds.main.Core;
 import de.freshminds.manager.CustomerManager;
 
 /**
@@ -22,6 +23,7 @@ public class CustomerRegisterController extends HttpServlet {
 
 	public void init() {
 		customerManager = new CustomerManager();
+		Core.setup();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
