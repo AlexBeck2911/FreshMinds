@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row text-center" style="color: tomato;">
+		<div class="row text-center" style="color: lightblue;">
 			<h2>FreshMinds</h2>
 		</div>
 		<hr>

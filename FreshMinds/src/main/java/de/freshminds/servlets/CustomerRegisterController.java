@@ -1,6 +1,7 @@
 package de.freshminds.servlets;
 
 import java.io.IOException;
+import java.security.MessageDigest;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +14,6 @@ import de.freshminds.entities.Customer;
 import de.freshminds.main.Core;
 import de.freshminds.manager.CustomerManager;
 
-/**
- * Servlet implementation class UserController
- */
 @WebServlet("/register")
 public class CustomerRegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +21,6 @@ public class CustomerRegisterController extends HttpServlet {
 
 	public void init() {
 		customerManager = new CustomerManager();
-		Core.setup();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +39,7 @@ public class CustomerRegisterController extends HttpServlet {
 		String birthdate = request.getParameter("Birthdate");
         String firstName = request.getParameter("Firstname");
         String lastName = request.getParameter("Lastname");
-        String password = request.getParameter("Password");
+        String password = customerManager.encrypt(request.getParameter("Password"));
         String email = request.getParameter("Email");
         String paymentMethod = "";
         String phonenumber = request.getParameter("Phonenumber");
@@ -67,7 +64,7 @@ public class CustomerRegisterController extends HttpServlet {
 
         customerManager.saveCustomer(customer);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("register-success.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/methods/auth/login.jsp");
         dispatcher.forward(request, response);
     }
 
