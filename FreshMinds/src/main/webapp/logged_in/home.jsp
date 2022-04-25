@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Willkommen!
+	<p>Willkommen <%=session.getAttribute("customerUsername")%>!</p>
 	<form action="logout" method="post">
 		<input type="submit" name="logout" value="Logout" />
 	</form>

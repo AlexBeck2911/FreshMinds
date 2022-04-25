@@ -12,15 +12,18 @@ import javax.servlet.http.HttpSession;
 
 import de.freshminds.entities.Customer;
 import de.freshminds.manager.CustomerManager;
+import de.freshminds.manager.SessionManager;
 
 @WebServlet("/login")
 public class CustomerLoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private CustomerManager customerManager;
+	private SessionManager sessionManager;
 
 	public void init() {
 		customerManager = new CustomerManager();
+		sessionManager = new SessionManager();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,14 +42,16 @@ public class CustomerLoginController extends HttpServlet {
 
 	private void authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String username = request.getParameter("Username");
-		System.out.println(username);
 		String password = customerManager.encrypt(request.getParameter("Password"));
 
 		if (customerManager.validate(username, password)) {
 			Customer customer = customerManager.getCustomerByUsername(username);
+			sessionManager.removeString(request, "loginError");
 			customerManager.login(customer, request, response);
 		} else {
-			throw new Exception("Der Login war nicht erfolgreich!");
+			sessionManager.setString(request, "loginError", "Falsches Passwort!");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+	        dispatcher.forward(request, response);
 		}
 	}
 

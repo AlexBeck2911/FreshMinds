@@ -16,6 +16,8 @@ import de.freshminds.entities.Customer;
 import de.freshminds.main.Core;
 
 public class CustomerManager {
+	
+	private SessionManager sessionManager = new SessionManager();
 
 	public void saveCustomer(Customer customer) {
 
@@ -72,15 +74,15 @@ public class CustomerManager {
 	}
 	
 	public void login(Customer customer, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session= request.getSession();
-    	session.setAttribute("customer", customer);
+		sessionManager.setObject(request, "customer", customer);
+		sessionManager.setString(request, "customerUsername", customer.getUsername());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logged_in/home.jsp");
         dispatcher.forward(request, response);
 	}
 	
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session= request.getSession();
-    	session.setAttribute("customer", null);
+		sessionManager.removeObject(request, "customer");
+		sessionManager.removeString(request, "customerUsername");
         RequestDispatcher dispatcher = request.getRequestDispatcher("");
         dispatcher.forward(request, response);
 	}

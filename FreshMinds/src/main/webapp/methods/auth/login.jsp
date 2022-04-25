@@ -3,15 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
+<meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-</head>
-
 </head>
 <body>
 	<div class="container">
@@ -35,13 +32,26 @@
 						</div>
 
 						<div class="form-group">
-							<label for="uname">Passwort:</label> <input type="password"
-								class="form-control" id="uname" placeholder="Passwort"
+							<label for="uname">Passwort:</label> 
+							<input type="password"
+								class="form-control" id="uname" 
+								
+								<% if (session.getAttribute("loginError") == null) { %>
+								
+								placeholder="Passwort"
+								
+								<% } else { %>		 
+								
+								placeholder="Falsches Passwort!"
+								
+								<%} %>
+								
 								name="Password" required>
 						</div>
 
 						<button type="submit" class="btn btn-primary">Login</button>
-						<a href="methods/auth/register.jsp">Noch kein Account? Hier registrieren!</a>
+						<a href="methods/auth/register.jsp">Noch kein Account? Hier
+							registrieren!</a>
 
 					</form>
 				</div>
