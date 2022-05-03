@@ -11,7 +11,7 @@
 	<p>Willkommen <%=session.getAttribute("customerUsername")%>!</p>
 	
 	<div align="center">
-        <table border="1" cellpadding="5">
+        <table border="1" cellpadding="6">
             <caption><h2>Unser Sortiment</h2></caption>
             <tr>
                 <th>Artikelnummer</th>
@@ -19,6 +19,7 @@
                 <th>Artikelname</th>
                 <th>Artikelherkunft</th>
                 <th>Artikelpreis</th>
+                <th>Actions</th>
             </tr>
             <c:forEach var="article" items="${listArticles}">
                 <tr>
@@ -27,6 +28,7 @@
                     <td><c:out value="${article.articleName}" /></td>
                     <td><c:out value="${article.articleOrigin}" /></td>
 					<td><c:out value="${article.articlePrice}" /></td>
+					<td><a href="buy?id=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
                 </tr>
             </c:forEach>
         </table>

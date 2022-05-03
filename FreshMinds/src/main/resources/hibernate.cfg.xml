@@ -14,6 +14,7 @@
     
     <mapping class="de.freshminds.entities.Category" />
     <mapping class="de.freshminds.entities.Article" />
+    <mapping class="de.freshminds.entities.Transaction" />
         
   </session-factory>
 </hibernate-configuration>
