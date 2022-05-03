@@ -2,12 +2,13 @@ package de.freshminds.manager;
 
 import org.hibernate.Session;
 
+import de.freshminds.entities.Article;
 import de.freshminds.entities.Category;
 import de.freshminds.main.Core;
 
 public class CategoryManager {
 	
-	public static void create(int categoryNumber, String categoryDesignation) {
+	public void create(int categoryNumber, String categoryDesignation) {
 
 		Category category = new Category();
 		category.setCategoryNumber(categoryNumber);
@@ -22,7 +23,7 @@ public class CategoryManager {
 		session.close();
 	}
 
-	public static void update(int categoryNumber, String categoryDesignation) {
+	public void update(int categoryNumber, String categoryDesignation) {
 		
 		Category category = new Category();
 		category.setCategoryNumber(categoryNumber);
@@ -37,7 +38,7 @@ public class CategoryManager {
 		session.close();
 	}
 	
-	public static void delete(int categoryNumber) {
+	public void delete(int categoryNumber) {
 		
 		Category category = new Category();
 		category.setCategoryNumber(categoryNumber);
@@ -49,6 +50,18 @@ public class CategoryManager {
 	 
 	    session.getTransaction().commit();
 	    session.close();
+	}
+	
+	public Category getCategory(int id) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+		
+		Category category = session.get(Category.class, id);
+		
+		session.getTransaction().commit();
+		
+		return category;
 	}
 
 }

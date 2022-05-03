@@ -1,5 +1,7 @@
 package de.freshminds.manager;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import de.freshminds.entities.Article;
@@ -7,7 +9,7 @@ import de.freshminds.main.Core;
 
 public class ArticleManager {
 
-	public static void create(int articleNumber, String articleName, double articlePrice, String articleOrigin,
+	public void create(int articleNumber, String articleName, double articlePrice, String articleOrigin,
 			int articleCategory) {
 
 		Article article = new Article();
@@ -26,9 +28,9 @@ public class ArticleManager {
 		session.close();
 	}
 
-	public static void update(int articleNumber, String articleName, double articlePrice, String articleOrigin,
+	public void update(int articleNumber, String articleName, double articlePrice, String articleOrigin,
 			Integer articleCategory) {
-		
+
 		Article article = new Article();
 		article.setArticleNumber(articleNumber);
 		article.setArticleName(articleName);
@@ -44,19 +46,42 @@ public class ArticleManager {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	public static void delete(int articleNumber) {
-		
+
+	public void delete(int articleNumber) {
+
 		Article article = new Article();
 		article.setArticleNumber(articleNumber);
-	 
-	    Session session = Core.articlesSessionFactory.openSession();
+
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(article);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	public Article getArticle(int id) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+		
+		Article article = session.get(Article.class, id);
+		
+		session.getTransaction().commit();
+		
+		return article;
+	}
+
+	public List<Article> getArticles() {
+		
+		Session session = Core.articlesSessionFactory.openSession();
 	    session.beginTransaction();
-	 
-	    session.delete(article);
-	 
+	    List<Article> articles = (List<Article>) session.createQuery("from Article").list();
 	    session.getTransaction().commit();
-	    session.close();
+	    
+	    return articles;
+		
 	}
 
 }
