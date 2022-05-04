@@ -10,6 +10,11 @@ public class SessionManager {
     	session.setAttribute(messageType, message);
 	}
 	
+	public String getString(HttpServletRequest request, String messageType) {
+		HttpSession session= request.getSession();
+    	return (String) session.getAttribute(messageType);
+	}
+	
 	public void removeString(HttpServletRequest request, String messageType) {
 		HttpSession session= request.getSession();
     	session.setAttribute(messageType, null);
