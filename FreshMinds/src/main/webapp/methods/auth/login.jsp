@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>FreshMinds - Login</title>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,15 +26,15 @@
 					<form action="login" method="post">
 
 						<div class="form-group">
-							<label for="uname">Benutzername:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Benutzername"
+							<label for="username">Benutzername:</label> <input type="text"
+								class="form-control" id="username" placeholder="Benutzername"
 								name="Username" required>
 						</div>
 
 						<div class="form-group">
-							<label for="uname">Passwort:</label> 
+							<label for="password">Passwort:</label> 
 							<input type="password"
-								class="form-control" id="uname" 
+								class="form-control" id="password" 
 								
 								<% if (session.getAttribute("loginError") == null) { %>
 								

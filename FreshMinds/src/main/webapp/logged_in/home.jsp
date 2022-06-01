@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta contentType="text/html; charset=" UTF-8"/>
-<title>Insert title here</title>
+<title>FreshMinds - Start</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -74,18 +74,27 @@
 				<th>Artikelname</th>
 				<th>Artikelherkunft</th>
 				<th>Artikelpreis</th>
+				<th>Verfügbar</th>
 				<th>Aktion</th>
 			</tr>
 			<c:forEach var="article" items="${listArticles}">
 				<c:set var="articleCategoryNumber">${article.articleCategory}</c:set>
+				<c:set var="articleID">${article.articleNumber}</c:set>
 				<tr>
 					<td><c:out value="${article.articleNumber}" /></td>
 					<td><c:out value="${sessionScope[articleCategoryNumber]}" /></td>
 					<td><c:out value="${article.articleName}" /></td>
 					<td><c:out value="${article.articleOrigin}" /></td>
 					<td><c:out value="${article.articlePrice} Euro" /></td>
-					<td><a
-						href="buy?id=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
+					<td><c:out value="${sessionScope[articleID]}" /></td>
+					
+					<c:if test="${sessionScope[articleID] != 0}">
+    					<td><a href="buy?articleID=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
+					</c:if>
+					<c:if test="${sessionScope[articleID] == 0}">
+    					<td>Ausverkauft!</td>
+					</c:if>
+					
 				</tr>
 			</c:forEach>
 		</table>

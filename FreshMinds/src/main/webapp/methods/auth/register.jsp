@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>FreshMinds - Registieren</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -29,72 +29,94 @@
 					<form action="<%=request.getContextPath()%>/register" method="post">
 
 						<div class="form-group">
-							<label for="uname">Benutzername:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Benutzername"
+							<label for="username">Benutzername:</label> <input type="text"
+								class="form-control" id="username" 
+								
+								<% if (session.getAttribute("registerErrorUsername") == null) { %>
+								
+								placeholder="Benutzername"
+								
+								<% } else { %>		 
+								
+								placeholder=<%= session.getAttribute("registerErrorUsername") %>
+								
+								<%} %>
+								
 								name="Username" required>
 						</div>
 
 						<div class="form-group">
-							<label for="uname">Passwort:</label> <input type="password"
-								class="form-control" id="uname" placeholder="Passwort"
+							<label for="password">Passwort:</label> <input type="password"
+								class="form-control" id="password" 
+								
+								<% if (session.getAttribute("registerErrorPassword") == null) { %>
+								
+								placeholder="Passwort (6-20 Zeichen)"
+								
+								<% } else { %>		 
+								
+								placeholder=<%= session.getAttribute("registerErrorPassword") %>
+								
+								<%} %>
+								
 								name="Password" required>
 						</div>
 
 						<div class="form-group">
-							<label for="uname">Vorname:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Vorname"
+							<label for="firstname">Vorname:</label> <input type="text"
+								class="form-control" id="firstname" placeholder="Vorname"
 								name="Firstname" required>
 						</div>
 
 						<div class="form-group">
-							<label for="uname">Nachname:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Nachname"
+							<label for="lastname">Nachname:</label> <input type="text"
+								class="form-control" id="lastname" placeholder="Nachname"
 								name="Lastname" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Email:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Email"
+							<label for="email">Email:</label> <input type="text"
+								class="form-control" id="email" placeholder="Email"
 								name="Email" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Geburtstag:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Geburtstag"
+							<label for="birthday">Geburtstag:</label> <input type="text"
+								class="form-control" id="birthday" placeholder="Geburtstag"
 								name="Geburtstag" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Telefonnummer:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Telefonnummer"
+							<label for="phonenumber">Telefonnummer:</label> <input type="text"
+								class="form-control" id="phonenumber" placeholder="Telefonnummer"
 								name="Phonenumber" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Land:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Land"
+							<label for="country">Land:</label> <input type="text"
+								class="form-control" id="country" placeholder="Land"
 								name="Country" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Stadt:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Stadt"
+							<label for="city">Stadt:</label> <input type="text"
+								class="form-control" id="city" placeholder="Stadt"
 								name="City" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Straße:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Straße + Nummer"
+							<label for="street">StraÃŸe:</label> <input type="text"
+								class="form-control" id="street" placeholder="StraÃŸe + Nummer"
 								name="Street" required>
 						</div>
 						
 						<div class="form-group">
-							<label for="uname">Postleitzahl:</label> <input type="text"
-								class="form-control" id="uname" placeholder="Postleitzahl"
+							<label for="postalcode">Postleitzahl:</label> <input type="text"
+								class="form-control" id="postalcode" placeholder="Postleitzahl"
 								name="PostalCode" required>
 						</div>
 
-						<button type="submit" class="btn btn-primary">Registrieren</button>
+						<button type="submit" class="btn btn-primary" id="register">Registrieren</button>
 
 					</form>
 				</div>

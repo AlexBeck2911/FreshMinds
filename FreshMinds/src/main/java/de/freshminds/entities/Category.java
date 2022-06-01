@@ -33,7 +33,6 @@ public class Category {
 		this.categoryNumber = categoryNumber;
 	}
 
-	@Column(name = "Designation")
 	public String getCategoryDesignation() {
 		return categoryDesignation;
 	}

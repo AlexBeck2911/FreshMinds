@@ -31,6 +31,10 @@ public class Core {
     	    StandardServiceRegistryBuilder.destroy(registry);
     	    throw new RuntimeException(e);
     	}
+    	
+    	DatabaseMethods.fillArticlesTable();
+    	DatabaseMethods.fillCategoriesTable();
+    	DatabaseMethods.fillStockTable();
     }
  
     protected void exit() {
@@ -38,22 +42,8 @@ public class Core {
     	customerSessionFactory.close();
     }
  
-    public static void main(String[] args) {
-        
-    	hibernateMethods();
 
-    }
     
-    public static void hibernateMethods() {
-    	
-    	Core core = new Core();
-    	core.setup();
-    	  	
-    	DatabaseMethods.fillArticlesTable();
-    	DatabaseMethods.fillCategoriesTable();
-    	   	
-    	core.exit();
-    	
-    }
+
 
 }

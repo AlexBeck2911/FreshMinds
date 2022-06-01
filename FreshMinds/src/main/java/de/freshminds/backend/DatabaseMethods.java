@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import de.freshminds.entities.Article;
 import de.freshminds.entities.Category;
+import de.freshminds.entities.Stock;
 import de.freshminds.main.Core;
 
 public class DatabaseMethods {
@@ -34,6 +35,34 @@ public class DatabaseMethods {
 		
 		for(Article article : articles)  {
 			freshMindsSession.saveOrUpdate(article);
+		}
+		freshMindsSession.getTransaction().commit();
+		freshMindsSession.close();
+	}
+	
+	public static void fillStockTable() {
+		
+		List<Stock> stock = new ArrayList<Stock>();
+		
+		stock.add(new Stock(1001, 500));
+		stock.add(new Stock(1002, 500));
+		stock.add(new Stock(1003, 500));
+		stock.add(new Stock(1004, 500));
+		stock.add(new Stock(1005, 500));
+		stock.add(new Stock(1006, 500));
+		stock.add(new Stock(1007, 500));
+		stock.add(new Stock(1008, 500));
+		stock.add(new Stock(1009, 500));
+		stock.add(new Stock(1010, 500));
+		stock.add(new Stock(2001, 500));
+		stock.add(new Stock(2002, 500));
+		stock.add(new Stock(2003, 500));
+		
+		Session freshMindsSession = Core.articlesSessionFactory.openSession();
+		freshMindsSession.beginTransaction();
+		
+		for(Stock articleStock : stock)  {
+			freshMindsSession.saveOrUpdate(articleStock);
 		}
 		freshMindsSession.getTransaction().commit();
 		freshMindsSession.close();
