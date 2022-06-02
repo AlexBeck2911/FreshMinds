@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.freshminds.entities.Article;
 import de.freshminds.entities.Category;
-import de.freshminds.entities.Customer;
 import de.freshminds.entities.Stock;
 import de.freshminds.manager.ArticleManager;
 import de.freshminds.manager.CategoryManager;
-import de.freshminds.manager.CustomerManager;
 import de.freshminds.manager.SessionManager;
 import de.freshminds.manager.StockManager;
 
@@ -39,7 +36,12 @@ public class CustomerHomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Get");
+		try {
+			listArticles(request, response);
+		} catch (SQLException | IOException | ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
