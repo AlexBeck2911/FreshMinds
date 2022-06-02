@@ -25,7 +25,7 @@ public class Transaction {
 	private int amount;
 	
 	@Column(name = "Price", length = 128, nullable = true, unique = false)
-	private int price;
+	private double price;
 	
 	@Column(name = "PaymentMethod", length = 128, nullable = true, unique = false)
 	private String paymentMethod;
@@ -35,7 +35,7 @@ public class Transaction {
 	
 	public Transaction() {}
 
-	public Transaction(int transactionNumber, String username, int articleNumber, int amount, int price, String paymentMethod, Date timestamp) {
+	public Transaction(int transactionNumber, String username, int articleNumber, int amount, double price, String paymentMethod, Date timestamp) {
 		this.transactionNumber = transactionNumber;
 		this.username = username;
 		this.articleNumber = articleNumber;
@@ -77,7 +77,7 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 

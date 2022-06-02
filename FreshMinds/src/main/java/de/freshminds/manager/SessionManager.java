@@ -25,6 +25,11 @@ public class SessionManager {
     	session.setAttribute(objectType, object);
 	}
 	
+	public Object getObject(HttpServletRequest request, String objectType) {
+		HttpSession session= request.getSession();
+    	return session.getAttribute(objectType);
+	}
+	
 	public void removeObject(HttpServletRequest request, String objectType) {
 		HttpSession session= request.getSession();
     	session.setAttribute(objectType, null);

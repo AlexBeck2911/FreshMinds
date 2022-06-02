@@ -42,6 +42,12 @@ public class CustomerLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("methods/auth/login.jsp");
+		try {
+			listArticles(request, response);
+		} catch (SQLException | IOException | ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
