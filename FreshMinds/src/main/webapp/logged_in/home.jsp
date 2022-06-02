@@ -60,10 +60,10 @@
 		</div>
 	</nav>
 
-	<p>
+	<h1 align = "center">
 		Willkommen
 		<%=session.getAttribute("customerUsername")%>!
-	</p>
+	</h1>
 
 	<div align="center">
 		<h2>Unser Sortiment</h2>

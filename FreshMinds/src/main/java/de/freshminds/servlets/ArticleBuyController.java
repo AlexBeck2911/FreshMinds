@@ -62,19 +62,14 @@ public class ArticleBuyController extends HttpServlet {
     	int articleID = Integer.parseInt(sessionManager.getString(request, "articleID"));
     	String paymentMethod = request.getParameter("paymentMethod");
     	Date date = new Date(System.currentTimeMillis());
-    	
-    	System.out.println(orderAmount);
-    	System.out.println(articlePrice);
-    	System.out.println(transactionNumber);
-    	System.out.println(rnd.nextInt(999999999));
-    	
-    	//transactionManager.create(transactionNumber, username, articleID, orderAmount, articlePrice, paymentMethod, date);
+    	    	
+    	transactionManager.create(transactionNumber, username, articleID, orderAmount, articlePrice, paymentMethod, date);
     	
     	int deliveryNumber = rnd.nextInt(999999999);
-    	String country = request.getParameter("country");
-    	String city = request.getParameter("city");
-    	String street = request.getParameter("street");
-    	String postalCode = request.getParameter("postalCode");
+    	String country = request.getParameter("Country");
+    	String city = request.getParameter("City");
+    	String street = request.getParameter("Street");
+    	String postalCode = request.getParameter("PostalCode");
     	String delivery = request.getParameter("delivery_date");
     	
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -83,7 +78,9 @@ public class ArticleBuyController extends HttpServlet {
     	Date deliveryDate = new Date(l);
     	System.out.println(deliveryDate);
     	
-    	//deliveryManager.create(deliveryNumber, transactionNumber, username, country, city, street, postalCode, deliveryDate);
+    	deliveryManager.create(deliveryNumber, transactionNumber, username, country, city, street, postalCode, deliveryDate);
+    	
+    	stockManager.update(articleID, stockManager.getStock(articleID).getArticleAmount() - orderAmount);
     	
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
     	dispatcher.forward(request,response);
