@@ -1,8 +1,6 @@
 package de.freshminds.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.freshminds.entities.Article;
-import de.freshminds.entities.Category;
 import de.freshminds.entities.Customer;
-import de.freshminds.entities.Stock;
-import de.freshminds.manager.ArticleManager;
-import de.freshminds.manager.CategoryManager;
 import de.freshminds.manager.CustomerManager;
 import de.freshminds.manager.SessionManager;
-import de.freshminds.manager.StockManager;
 
 @WebServlet("/login")
 public class CustomerLoginController extends HttpServlet {
@@ -27,27 +19,15 @@ public class CustomerLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CustomerManager customerManager;
 	private SessionManager sessionManager;
-	private ArticleManager articleManager;
-	private CategoryManager categoryManager;
-	private StockManager stockManager;
 
 	public void init() {
 		customerManager = new CustomerManager();
 		sessionManager = new SessionManager();
-		articleManager = new ArticleManager();
-		categoryManager = new CategoryManager();
-		stockManager = new StockManager();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("methods/auth/login.jsp");
-		try {
-			listArticles(request, response);
-		} catch (SQLException | IOException | ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +46,6 @@ public class CustomerLoginController extends HttpServlet {
 		if (customerManager.validate(username, password)) {
 			Customer customer = customerManager.getCustomerByUsername(username);
 			sessionManager.removeString(request, "loginError");
-			listArticles(request, response);
 			customerManager.login(customer, request, response);
 
 		} else {
@@ -74,24 +53,6 @@ public class CustomerLoginController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("");
 			dispatcher.forward(request, response);
 		}
-	}
-
-	private void listArticles(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
-		List<Article> listArticles = articleManager.getArticles();
-		request.setAttribute("listArticles", listArticles);
-
-		for (Article article : listArticles) {
-			if (sessionManager.getString(request, Integer.toString(article.getArticleCategory())) == null) {
-				Category category = categoryManager.getCategory(article.getArticleCategory());
-				sessionManager.setString(request, Integer.toString(article.getArticleCategory()), category.getCategoryDesignation());
-			}
-			Stock stock = stockManager.getStock(article.getArticleNumber());
-			System.out.println(stock.getArticleAmount());
-			sessionManager.setString(request, Integer.toString(article.getArticleNumber()), Integer.toString(stock.getArticleAmount()));
-		}
-		
-
 	}
 
 }

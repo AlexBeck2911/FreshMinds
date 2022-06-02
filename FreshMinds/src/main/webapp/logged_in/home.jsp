@@ -89,7 +89,7 @@
 					<td><c:out value="${sessionScope[articleID]}" /></td>
 					
 					<c:if test="${sessionScope[articleID] != 0}">
-    					<td><a href="buy?articleID=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
+    					<td><a href="<%=request.getContextPath()%>/buy?articleID=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
 					</c:if>
 					<c:if test="${sessionScope[articleID] == 0}">
     					<td>Ausverkauft!</td>

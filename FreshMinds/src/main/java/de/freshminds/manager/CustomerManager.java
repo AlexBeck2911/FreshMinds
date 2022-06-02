@@ -2,6 +2,8 @@ package de.freshminds.manager;
 
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import de.freshminds.entities.Article;
+import de.freshminds.entities.Category;
 import de.freshminds.entities.Customer;
+import de.freshminds.entities.Stock;
 import de.freshminds.main.Core;
 
 public class CustomerManager {
@@ -76,8 +81,8 @@ public class CustomerManager {
 	public void login(Customer customer, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		sessionManager.setObject(request, "customer", customer);
 		sessionManager.setString(request, "customerUsername", customer.getUsername());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logged_in/home.jsp");
-        dispatcher.forward(request, response);
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+    	dispatcher.forward(request,response);
 	}
 	
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,5 +91,5 @@ public class CustomerManager {
         RequestDispatcher dispatcher = request.getRequestDispatcher("");
         dispatcher.forward(request, response);
 	}
-
+	
 }

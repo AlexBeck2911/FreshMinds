@@ -152,7 +152,7 @@
 				</div>
 				
 				<label for="delivery_date">Gewünschtes Lieferdatum:</label>
-  					<input type="date" id="delivery_date" name="delivery_date">
+  					<input type="datetime-local" id="delivery_date" name="delivery_date">
 				
 			</div>
 			
@@ -179,4 +179,18 @@
 		totalPrice.innerHTML = totalPriceValue.toFixed(2);
 
 	}
+	
+	var deliveryDatePicker = document.getElementById("delivery_date");
+	var minDeliveryDate = new Date();
+	minDeliveryDate.setDate(minDeliveryDate.getDate() + 5);
+	minDeliveryDate.setHours(12, 0, 0, 0);
+	
+	deliveryDatePicker.setAttribute("value",minDeliveryDate.toISOString().slice(0, -8));
+	deliveryDatePicker.setAttribute("min",minDeliveryDate.toISOString().slice(0, -8));
+	
+	var maxDeliveryDate = new Date();
+	maxDeliveryDate.setDate(maxDeliveryDate.getDate() + 19);
+	maxDeliveryDate.setHours(12, 0, 0, 0);
+	deliveryDatePicker.setAttribute("max",maxDeliveryDate.toISOString().slice(0, -8));
+
 </script>

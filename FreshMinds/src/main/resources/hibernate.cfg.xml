@@ -10,7 +10,7 @@
     <property name="hibernate.connection.username">rb</property>
     <property name="hibernate.connection.password">XD7$kzahR!9R</property>
     <property name="hibernate.hbm2ddl.auto">update</property> 
-    <property name="show_sql">true</property>
+    <property name="show_sql">false</property>
     
     <mapping class="de.freshminds.entities.Category" />
     <mapping class="de.freshminds.entities.Article" />

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,7 @@ public class ArticleBuyController extends HttpServlet {
 		}
 	}
     
-    public void processOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+    public void processOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException, ServletException {
     	
     	int orderAmount = Integer.parseInt(request.getParameter("amountRange"));
     	Double articlePrice = Double.valueOf(sessionManager.getString(request, "articlePrice")); 
@@ -84,7 +85,9 @@ public class ArticleBuyController extends HttpServlet {
     	
     	//deliveryManager.create(deliveryNumber, transactionNumber, username, country, city, street, postalCode, deliveryDate);
     	
-    	response.sendRedirect("logged_in/home.jsp");
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+    	dispatcher.forward(request,response);
+  
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
