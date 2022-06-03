@@ -99,10 +99,11 @@
 			<c:forEach var="shoppingCart" items="${shoppingCart}"
 				varStatus="status">
 				<c:set var="articleNumber">${shoppingCart.articleNumber}</c:set>
+				<c:set var="totalPrice"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${totalItemPrice[status.index]}" /></c:set>
 				<tr>
 					<td><c:out value="${sessionScope[articleNumber]}" /></td>
 					<td><c:out value="${shoppingCart.amount}" /></td>
-					<td><c:out value="${totalItemPrice[status.index]} €" /></td>
+					<td><c:out value="${totalPrice} €" /></td>
 					<td><a
 						href="<%=request.getContextPath()%>/removefromshoppingcart?id=<c:out value='${shoppingCart.col}' />">Entfernen</a></td>
 				</tr>

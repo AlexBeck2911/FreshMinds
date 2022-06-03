@@ -38,5 +38,33 @@ public class TransactionManager {
 	    	   
 	    return transactions;
 	}
+	
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	public List<Transaction> getItemsByTransaction(int transactionNumber) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+	    session.beginTransaction();
+	    
+	    String hql = "FROM Transaction WHERE TransactionNumber = :transactionNumber";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("transactionNumber", transactionNumber);
+	    List<Transaction> transactions = query.list();
+	    	   
+	    return transactions;
+	}
+	
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	public List<Transaction> getFullTransactionsByUsername(String username) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+	    session.beginTransaction();
+	    
+	    String hql = "FROM Transaction WHERE Username = :username GROUP BY TransactionNumber";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("username", username);
+	    List<Transaction> transactions = query.list();
+	    	   
+	    return transactions;
+	}
 
 }

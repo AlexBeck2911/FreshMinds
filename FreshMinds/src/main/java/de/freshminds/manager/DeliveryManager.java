@@ -27,6 +27,19 @@ public class DeliveryManager {
 		session.close();
 	}
 	
+	public Delivery getDeliveryByTransactionNumber(int transactionNumber) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+		
+		String hql = "FROM Delivery WHERE TransactionNumber = :transactionNumber";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("transactionNumber", transactionNumber);
+	    List<Delivery> deliveries = query.list();
+		
+		return deliveries.get(0);
+	}
+	
 	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 	public List<Delivery> getDeliveriesByUsername(String username) {
 		
@@ -37,6 +50,8 @@ public class DeliveryManager {
 	    Query query = session.createQuery(hql);
 	    query.setParameter("username", username);
 	    List<Delivery> deliveries = query.list();
+	    
+	    session.close();
 	    	   
 	    return deliveries;
 	}

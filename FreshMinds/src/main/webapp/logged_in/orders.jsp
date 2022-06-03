@@ -99,22 +99,23 @@
 				<th>Postleitzahl</th>
 				<th>Aktion</th>
 			</tr>
-			<c:forEach var="transactions" items="${transactions}" varStatus="status">
+			<c:forEach var="transactions" items="${completeTransactions}" varStatus="status">
 			<c:set var="transactionNumber">${transactions.transactionNumber}</c:set>
-			<c:set var="totalPrice"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${transactions.amount * transactions.price}" /></c:set>
+			<c:set var="totalPriceNumber"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${totalPrice[status.index]}" /></c:set>
 			<c:set var="transactionTimestamp"><fmt:formatDate value="${transactions.timestamp}" pattern="dd.MM.yyyy HH:mm:ss" /></c:set>
-			<c:set var="deliveryDate"><fmt:formatDate value="${deliveries[status.index].deliveryDate}" pattern="dd.MM.yyyy HH:mm:ss" /></c:set>
+			<c:set var="deliveryDateTimestamp"><fmt:formatDate value="${deliveries[status.index].deliveryDate}" pattern="dd.MM.yyyy HH:mm:ss" /></c:set>
 				<tr>
 					<td><c:out value="${transactions.transactionNumber}" /></td>
-					<td><c:out value="${sessionScope[transactionNumber]}" /></td>
-					<td><c:out value="${transactions.amount}" /></td>
-					<td><c:out value="${totalPrice} €" /></td>
+					<td><c:out value="${totalAmount[status.index]} Artikel" /></td>
+					<td><c:out value="${totalPriceNumber} €" /></td>
 					<td><c:out value="${transactionTimestamp}" /></td>
-					<td><c:out value="${deliveryDate}" /></td>
+					<td><c:out value="${deliveryDateTimestamp}" /></td>
 					<td><c:out value="${deliveries[status.index].country}" /></td>
 					<td><c:out value="${deliveries[status.index].city}" /></td>
 					<td><c:out value="${deliveries[status.index].street}" /></td>
 					<td><c:out value="${deliveries[status.index].postalCode}" /></td>
+					<td><a
+							href="<%=request.getContextPath()%>/details?transactionNumber=<c:out value='${transactions.transactionNumber}' />">Details</a></td>
 				
 				</tr>
 			</c:forEach>
