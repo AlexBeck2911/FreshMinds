@@ -1,7 +1,5 @@
 package de.freshminds.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,16 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Transaction")
-public class Transaction {
+@Table(name = "ShoppingCart")
+public class ShoppingCart {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	
-	@Column(name = "TransactionNumber")
-	private int transactionNumber;
-	
+	private int col;
+		
 	@Column(name = "Username", length = 128, nullable = true, unique = false)
 	private String username;
 	
@@ -32,32 +27,15 @@ public class Transaction {
 	@Column(name = "Price", length = 128, nullable = true, unique = false)
 	private double price;
 	
-	@Column(name = "PaymentMethod", length = 128, nullable = true, unique = false)
-	private String paymentMethod;
-	
-	@Column(name = "Timestamp", length = 128, nullable = true, unique = false)
-	private Date timestamp;
-	
-	public Transaction() {}
-
-	public Transaction(int transactionNumber, String username, int articleNumber, int amount, double price, String paymentMethod, Date timestamp, int id) {
-		this.transactionNumber = transactionNumber;
+	public ShoppingCart(String username, int articleNumber, int amount, double price, int col) {
+		this.col = col;
 		this.username = username;
 		this.articleNumber = articleNumber;
 		this.amount = amount;
 		this.price = price;
-		this.paymentMethod = paymentMethod;
-		this.timestamp = timestamp;
-		this.id = id;
 	}
-
-	public int getTransactionNumber() {
-		return transactionNumber;
-	}
-
-	public void setTransactionNumber(int transactionNumber) {
-		this.transactionNumber = transactionNumber;
-	}
+	
+	public ShoppingCart() {}
 
 	public String getUsername() {
 		return username;
@@ -87,24 +65,16 @@ public class Transaction {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
-	public String getPaymentMethod() {
-		return paymentMethod;
+	public int getCol() {
+		return col;
 	}
 
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public void setCol(int col) {
+		this.col = col;
 	}
 
 }

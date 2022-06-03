@@ -82,6 +82,7 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/orders">Meine
 						Bestellungen</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/shoppingcart">Mein Warenkorb</a></li>
 				<li class="nav-item">
 					<form action="<%=request.getContextPath()%>/logout" method="post">
 						<input type="submit" name="logout" value="Logout" class="btn-link" />
@@ -96,7 +97,7 @@
 		<h2><%=session.getAttribute("articleName")%>
 			kaufen
 		</h2>
-		<form action="<%=request.getContextPath()%>/buy" method="post">
+		<form action="<%=request.getContextPath()%>/addtoshoppingcart" method="post">
 			<div class="slidecontainer">
 				<input type="range" min="1"
 					<%if (Integer.parseInt(session.getAttribute("availability").toString()) >= 200) {%>
@@ -114,49 +115,11 @@
 				</span><span> €</span><span> = </span><span id="totalPrice"><%=Double.parseDouble(session.getAttribute("articlePrice").toString())%></span><span>
 					€</span>
 			</p>
-
-			<label for="paymentMethod">Bezahlungsmethode:</label> <select
-				name="paymentMethod" id="paymentMethods">
-				<option>PayPal</option>
-				<option>Kreditkarte</option>
-				<option>SEPA-Lastschrift</option>
-			</select>
-
-			<h4>Lieferadresse</h4>
-
-			<div class="col-md-8 col-md-offset-3">
-				<div class="form-group">
-					<label for="country">Land:</label> <input type="text"
-						class="form-control" id="country" name="Country"
-						value="<%=session.getAttribute("country")%>" required>
-
-				</div>
-
-				<div class="form-group">
-					<label for="city">Stadt:</label> <input type="text"
-						class="form-control" id="city" name="City"
-						value="<%=session.getAttribute("city")%>" required>
-				</div>
-
-				<div class="form-group">
-					<label for="street">Straße:</label> <input type="text"
-						class="form-control" id="street"
-						value="<%=session.getAttribute("street")%>" name="Street" required>
-				</div>
-
-				<div class="form-group">
-					<label for="postalcode">Postleitzahl:</label> <input type="text"
-						class="form-control" id="postalcode"
-						value="<%=session.getAttribute("postalCode")%>" name="PostalCode"
-						required>
-				</div>
-				
-				<label for="delivery_date">Gewünschtes Lieferdatum:</label>
-  					<input type="datetime-local" id="delivery_date" name="delivery_date">
+			
+			<button type="submit" class="btn btn-primary" id="add" align="center">Zum Warenkorb hinzufügen</button>
 				
 			</div>
 			
-			<button type="submit" class="btn btn-primary" id="buy">Kaufen</button>
 		</form>
 
 	</div>
@@ -180,17 +143,4 @@
 
 	}
 	
-	var deliveryDatePicker = document.getElementById("delivery_date");
-	var minDeliveryDate = new Date();
-	minDeliveryDate.setDate(minDeliveryDate.getDate() + 5);
-	minDeliveryDate.setHours(12, 0, 0, 0);
-	
-	deliveryDatePicker.setAttribute("value",minDeliveryDate.toISOString().slice(0, -8));
-	deliveryDatePicker.setAttribute("min",minDeliveryDate.toISOString().slice(0, -8));
-	
-	var maxDeliveryDate = new Date();
-	maxDeliveryDate.setDate(maxDeliveryDate.getDate() + 19);
-	maxDeliveryDate.setHours(12, 0, 0, 0);
-	deliveryDatePicker.setAttribute("max",maxDeliveryDate.toISOString().slice(0, -8));
-
 </script>

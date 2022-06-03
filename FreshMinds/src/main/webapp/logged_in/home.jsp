@@ -32,36 +32,34 @@
 }
 
 #searchTable {
-  background-image: url('/css/searchicon.png'); 
-  background-position: 10px 12px; 
-  background-repeat: no-repeat; 
-  width: 50%; 
-  font-size: 
-  padding: 12px 20px 12px 40px; 
-  border: 1px solid #ddd; 
-  margin-bottom: 12px; 
+	background-image: url('/css/searchicon.png');
+	background-position: 10px 12px;
+	background-repeat: no-repeat;
+	width: 50%;
+	font-size: padding: 12px 20px 12px 40px;
+	border: 1px solid #ddd;
+	margin-bottom: 12px;
 }
 
 #selection {
-  border-collapse: collapse; 
-  width: 80%; 
-  border: 1px solid #ddd; 
-  font-size: 18px; 
+	border-collapse: collapse;
+	width: 80%;
+	border: 1px solid #ddd;
+	font-size: 18px;
 }
 
 #selection th, #selection td {
-  text-align: left; 
-  padding: 12px; 
+	text-align: left;
+	padding: 12px;
 }
 
 #selection tr {
-  border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 
 #selection tr.header, #selection tr:hover {
-  background-color: #f1f1f1;
+	background-color: #f1f1f1;
 }
-
 </style>
 
 </head>
@@ -84,6 +82,9 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<%=request.getContextPath()%>/orders">Meine Bestellungen</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=request.getContextPath()%>/shoppingcart">Mein
+						Warenkorb</a></li>
 				<li class="nav-item">
 					<form action="<%=request.getContextPath()%>/logout" method="post">
 						<input type="submit" name="logout" value="Logout" class="btn-link" />
@@ -102,7 +103,7 @@
 	<div align="center">
 		<h2>Unser Sortiment</h2>
 		<input type="text" id="searchTable" onkeyup="search()"
-			placeholder="Suchen in jeglicher Kategorie">
+			placeholder="Suchen in jeglicher Kategorie...">
 		<table border="1" cellpadding="6" id="selection">
 			<tr>
 				<th>Artikelnummer</th>
@@ -130,7 +131,7 @@
 
 					<c:if test="${listStocks[status.index].articleAmount != 0}">
 						<td><a
-							href="<%=request.getContextPath()%>/buy?articleID=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
+							href="<%=request.getContextPath()%>/addtoshoppingcart?articleID=<c:out value='${article.articleNumber}' />">Kaufen</a></td>
 					</c:if>
 					<c:if test="${listStocks[status.index].articleAmount == 0}">
 						<td>Ausverkauft!</td>

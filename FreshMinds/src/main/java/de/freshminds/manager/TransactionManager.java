@@ -12,9 +12,9 @@ import de.freshminds.main.Core;
 
 public class TransactionManager {
 	
-	public void create(int transactionNumber, String username, int articleNumber, int amount, double price, String paymentMethod, Date timestamp) {
+	public void create(int transactionNumber, String username, int articleNumber, int amount, double price, String paymentMethod, Date timestamp, int id) {
 
-		Transaction transaction = new Transaction(transactionNumber, username, articleNumber, amount, price, paymentMethod, timestamp);
+		Transaction transaction = new Transaction(transactionNumber, username, articleNumber, amount, price, paymentMethod, timestamp, id);
 
 		Session session = Core.articlesSessionFactory.openSession();
 		session.beginTransaction();

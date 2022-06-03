@@ -73,6 +73,7 @@
 				</a></li>
 				<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/orders">Meine
 						Bestellungen</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/shoppingcart">Mein Warenkorb</a></li>
 				<li class="nav-item">
 					<form action="<%=request.getContextPath()%>/logout" method="post">
 						<input type="submit" name="logout" value="Logout" class="btn-link" />
@@ -88,8 +89,7 @@
 		<table border="1" cellpadding="6" id="orders">
 			<tr>
 				<th>Transaktionsnummer</th>
-				<th>Artikelname</th>
-				<th>Menge</th>
+				<th>Gesamtmenge</th>
 				<th>Gesamtpreis</th>
 				<th>Bestellzeitpunkt</th>
 				<th>Lieferdatum</th>
@@ -97,6 +97,7 @@
 				<th>Stadt</th>
 				<th>Straße</th>
 				<th>Postleitzahl</th>
+				<th>Aktion</th>
 			</tr>
 			<c:forEach var="transactions" items="${transactions}" varStatus="status">
 			<c:set var="transactionNumber">${transactions.transactionNumber}</c:set>

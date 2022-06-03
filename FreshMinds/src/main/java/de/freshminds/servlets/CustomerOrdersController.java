@@ -56,6 +56,8 @@ public class CustomerOrdersController extends HttpServlet {
 		List<Transaction> transactions = transactionManager.getTransactionsByUsername(sessionManager.getString(request, "customerUsername"));
 		List<Delivery> deliveries = deliveryManager.getDeliveriesByUsername(sessionManager.getString(request, "customerUsername"));
 		
+		
+		
 		sessionManager.setObject(request, "transactions", transactions);
 		sessionManager.setObject(request, "deliveries", deliveries);
 		

@@ -32,9 +32,9 @@ public class Core {
     	    throw new RuntimeException(e);
     	}
     	
-    	DatabaseMethods.fillArticlesTable();
-    	DatabaseMethods.fillCategoriesTable();
-    	DatabaseMethods.fillStockTable();
+    	//DatabaseMethods.fillArticlesTable();
+    	//DatabaseMethods.fillCategoriesTable();
+    	//DatabaseMethods.fillStockTable();
     }
  
     protected void exit() {
