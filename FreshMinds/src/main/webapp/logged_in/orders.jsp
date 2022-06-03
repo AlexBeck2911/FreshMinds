@@ -30,6 +30,27 @@
 	text-decoration: none;
 	color: rgba(0,0,0,.7);
 }
+
+#orders {
+  border-collapse: collapse; 
+  width: 80%; 
+  border: 1px solid #ddd; 
+  font-size: 18px; 
+}
+
+#orders th, #orders td {
+  text-align: left; 
+  padding: 12px; 
+}
+
+#orders tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#orders tr.header, #orders tr:hover {
+  background-color: #f1f1f1;
+}
+
 </style>
 
 </head>
@@ -64,7 +85,7 @@
 
 	<div align="center">
 		<h2>Meine Bestellungen</h2>
-		<table border="1" cellpadding="6">
+		<table border="1" cellpadding="6" id="orders">
 			<tr>
 				<th>Transaktionsnummer</th>
 				<th>Artikelname</th>

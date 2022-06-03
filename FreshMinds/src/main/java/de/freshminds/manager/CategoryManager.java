@@ -1,9 +1,12 @@
 package de.freshminds.manager;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import de.freshminds.entities.Article;
 import de.freshminds.entities.Category;
+import de.freshminds.entities.Stock;
 import de.freshminds.main.Core;
 
 public class CategoryManager {
@@ -62,6 +65,17 @@ public class CategoryManager {
 		session.getTransaction().commit();
 		
 		return category;
+	}
+	
+	public List<Category> getCategories() {
+
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+		List<Category> categories = (List<Category>) session.createQuery("from Category").list();
+		session.getTransaction().commit();
+
+		return categories;
+
 	}
 
 }

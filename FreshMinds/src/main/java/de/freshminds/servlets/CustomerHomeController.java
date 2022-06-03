@@ -56,15 +56,15 @@ public class CustomerHomeController extends HttpServlet {
 	private void listArticles(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		List<Article> listArticles = articleManager.getArticles();
+		List<Stock> listStocks = stockManager.getStocks();
 		sessionManager.setObject(request, "listArticles", listArticles);
+		sessionManager.setObject(request, "listStocks", listStocks);
 
 		for (Article article : listArticles) {
 			if (sessionManager.getString(request, Integer.toString(article.getArticleCategory())) == null) {
 				Category category = categoryManager.getCategory(article.getArticleCategory());
 				sessionManager.setString(request, Integer.toString(article.getArticleCategory()), category.getCategoryDesignation());
 			}
-			Stock stock = stockManager.getStock(article.getArticleNumber());
-			sessionManager.setString(request, Integer.toString(article.getArticleNumber()), Integer.toString(stock.getArticleAmount()));
 		}
 		response.sendRedirect("logged_in/home.jsp");
 		

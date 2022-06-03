@@ -1,5 +1,7 @@
 package de.freshminds.manager;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import de.freshminds.entities.Article;
@@ -33,6 +35,17 @@ public class StockManager {
 		session.getTransaction().commit();
 
 		return stock;
+	}
+
+	public List<Stock> getStocks() {
+
+		Session session = Core.articlesSessionFactory.openSession();
+		session.beginTransaction();
+		List<Stock> stocks = (List<Stock>) session.createQuery("from Stock").list();
+		session.getTransaction().commit();
+
+		return stocks;
+
 	}
 
 }
