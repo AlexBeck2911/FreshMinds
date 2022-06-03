@@ -1,8 +1,11 @@
 package de.freshminds.manager;
 
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import de.freshminds.entities.Transaction;
 import de.freshminds.main.Core;
@@ -20,6 +23,20 @@ public class TransactionManager {
 
 		session.getTransaction().commit();
 		session.close();
+	}
+	
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	public List<Transaction> getTransactionsByUsername(String username) {
+		
+		Session session = Core.articlesSessionFactory.openSession();
+	    session.beginTransaction();
+	    
+	    String hql = "FROM Transaction WHERE Username = :username";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("username", username);
+	    List<Transaction> transactions = query.list();
+	    	   
+	    return transactions;
 	}
 
 }

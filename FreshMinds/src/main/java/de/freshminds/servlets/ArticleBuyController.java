@@ -17,7 +17,6 @@ import de.freshminds.entities.Article;
 import de.freshminds.entities.Customer;
 import de.freshminds.entities.Stock;
 import de.freshminds.manager.ArticleManager;
-import de.freshminds.manager.CustomerManager;
 import de.freshminds.manager.DeliveryManager;
 import de.freshminds.manager.SessionManager;
 import de.freshminds.manager.StockManager;
@@ -27,7 +26,6 @@ import de.freshminds.manager.TransactionManager;
 public class ArticleBuyController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-    private CustomerManager customerManager;
     private ArticleManager articleManager;
     private SessionManager sessionManager;
     private StockManager stockManager;
@@ -35,7 +33,6 @@ public class ArticleBuyController extends HttpServlet {
     private DeliveryManager deliveryManager;
 
     public void init() {
-    	customerManager = new CustomerManager();
     	articleManager = new ArticleManager();
     	sessionManager = new SessionManager();
     	stockManager = new StockManager();
@@ -76,13 +73,12 @@ public class ArticleBuyController extends HttpServlet {
 
     	long l = sdf.parse(delivery).getTime(); 
     	Date deliveryDate = new Date(l);
-    	System.out.println(deliveryDate);
     	
     	deliveryManager.create(deliveryNumber, transactionNumber, username, country, city, street, postalCode, deliveryDate);
     	
     	stockManager.update(articleID, stockManager.getStock(articleID).getArticleAmount() - orderAmount);
     	
-    	RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("/orders");
     	dispatcher.forward(request,response);
   
     }

@@ -39,7 +39,6 @@ public class CustomerHomeController extends HttpServlet {
 		try {
 			listArticles(request, response);
 		} catch (SQLException | IOException | ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

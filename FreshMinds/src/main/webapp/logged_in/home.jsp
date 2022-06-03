@@ -48,7 +48,7 @@
 				<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/home">Artikelübersicht
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Meine
+				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/orders">Meine
 						Bestellungen</a></li>
 				<li class="nav-item">
 					<form action="<%=request.getContextPath()%>/logout" method="post">
