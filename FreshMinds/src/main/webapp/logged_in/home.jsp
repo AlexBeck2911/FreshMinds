@@ -59,7 +59,7 @@
 		<div align="center" class="content">
 			<h2 class="pageSubTitle">Unser Sortiment</h2>
 			<input type="text" id="searchTable" onkeyup="search()"
-				placeholder="Suchen in jeglicher Kategorie...">
+				placeholder="Suchen in dem Sortiment...">
 			<table border="1" cellpadding="6" id="table">
 				<tr>
 					<th>Artikelnummer</th>
