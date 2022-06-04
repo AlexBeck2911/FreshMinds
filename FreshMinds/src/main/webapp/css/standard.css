@@ -1,0 +1,68 @@
+@charset "ISO-8859-1";
+
+.pageContent {
+	min-height: calc(100vh - 74px)
+}
+
+.pageTitle {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.pageSubTitle {
+	margin-bottom: 40px;
+}
+
+.content {
+	margin-bottom: 50px;
+}
+
+.element-margin {
+	margin-top: 50px;
+}
+
+/* NAVBAR */
+
+.btn-link {
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	color: rgba(0, 0, 0, .5);
+	margin-top: 7px;
+	padding: 0;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.btn-link:hover {
+	text-decoration: none;
+	color: rgba(0, 0, 0, .7);
+}
+
+.shopping-cart {
+	font-size: 20px;
+	margin-right: 10px
+}
+
+/* TABLE */
+
+#table {
+	border-collapse: collapse;
+	width: 80%;
+	border: 1px solid #ddd;
+	font-size: 18px;
+}
+
+#table th, #table td {
+	text-align: left;
+	padding: 12px;
+}
+
+#table tr {
+	border-bottom: 1px solid #ddd;
+}
+
+#table tr.header, #table tr:hover {
+	background-color: #f1f1f1;
+}

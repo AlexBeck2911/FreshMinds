@@ -11,13 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.freshminds.entities.Article;
-import de.freshminds.entities.Category;
-import de.freshminds.entities.Delivery;
-import de.freshminds.entities.Stock;
 import de.freshminds.entities.Transaction;
 import de.freshminds.manager.ArticleManager;
-import de.freshminds.manager.CustomerManager;
-import de.freshminds.manager.DeliveryManager;
 import de.freshminds.manager.SessionManager;
 import de.freshminds.manager.TransactionManager;
 
@@ -26,13 +21,11 @@ public class CustomerOrderDetailsController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private SessionManager sessionManager;
-	private DeliveryManager deliveryManager;
 	private TransactionManager transactionManager;
 	private ArticleManager articleManager;
 
 	public void init() {
 		sessionManager = new SessionManager();
-		deliveryManager = new DeliveryManager();
 		transactionManager = new TransactionManager();
 		articleManager = new ArticleManager();
 	}

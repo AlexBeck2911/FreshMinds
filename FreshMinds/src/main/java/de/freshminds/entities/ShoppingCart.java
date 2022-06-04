@@ -10,32 +10,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ShoppingCart")
 public class ShoppingCart {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int col;
-		
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	@Column(name = "Username", length = 128, nullable = true, unique = false)
 	private String username;
-	
+
 	@Column(name = "ArticleNumber", length = 128, nullable = true, unique = false)
 	private int articleNumber;
-	
+
 	@Column(name = "Amount", length = 128, nullable = true, unique = false)
 	private int amount;
-	
+
 	@Column(name = "Price", length = 128, nullable = true, unique = false)
 	private double price;
-	
-	public ShoppingCart(String username, int articleNumber, int amount, double price, int col) {
-		this.col = col;
+
+	public ShoppingCart(String username, int articleNumber, int amount, double price, int id) {
+		this.id = id;
 		this.username = username;
 		this.articleNumber = articleNumber;
 		this.amount = amount;
 		this.price = price;
 	}
-	
-	public ShoppingCart() {}
+
+	public ShoppingCart() {
+	}
 
 	public String getUsername() {
 		return username;
@@ -68,13 +69,13 @@ public class ShoppingCart {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	public int getCol() {
-		return col;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setCol(int col) {
-		this.col = col;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

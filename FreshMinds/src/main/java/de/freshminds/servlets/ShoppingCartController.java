@@ -14,33 +14,21 @@ import de.freshminds.entities.Article;
 import de.freshminds.entities.Customer;
 import de.freshminds.entities.ShoppingCart;
 import de.freshminds.manager.ArticleManager;
-import de.freshminds.manager.CategoryManager;
-import de.freshminds.manager.DeliveryManager;
 import de.freshminds.manager.SessionManager;
 import de.freshminds.manager.ShoppingCartManager;
-import de.freshminds.manager.StockManager;
-import de.freshminds.manager.TransactionManager;
 
 @WebServlet("/shoppingcart")
 public class ShoppingCartController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private SessionManager sessionManager;
-	private DeliveryManager deliveryManager;
-	private TransactionManager transactionManager;
 	private ArticleManager articleManager;
 	private ShoppingCartManager shoppingCartManager;
-	private StockManager stockManager;
-	private CategoryManager categoryManager;
 
 	public void init() {
 		sessionManager = new SessionManager();
-		deliveryManager = new DeliveryManager();
-		transactionManager = new TransactionManager();
 		articleManager = new ArticleManager();
 		shoppingCartManager = new ShoppingCartManager();
-		stockManager = new StockManager();
-		categoryManager = new CategoryManager();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

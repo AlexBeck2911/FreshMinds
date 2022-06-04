@@ -5,6 +5,7 @@
 <hibernate-configuration>      
   <session-factory>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="connection.pool_size">100</property>
     <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mariadb://81.169.214.51:3306/FreshMinds_Customer</property>
     <property name="hibernate.connection.username">rb</property>

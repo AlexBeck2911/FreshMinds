@@ -26,7 +26,6 @@ import de.freshminds.manager.TransactionManager;
 public class ArticleBuyController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-    private ArticleManager articleManager;
     private SessionManager sessionManager;
     private StockManager stockManager;
     private TransactionManager transactionManager;
@@ -34,7 +33,6 @@ public class ArticleBuyController extends HttpServlet {
     private ShoppingCartManager shoppingCartManager;
 
     public void init() {
-    	articleManager = new ArticleManager();
     	sessionManager = new SessionManager();
     	stockManager = new StockManager();
     	transactionManager = new TransactionManager();
