@@ -13,39 +13,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="../css/standard.css">
-
-<style>
-.slidecontainer {
-	width: 100%; /* Width of the outside container */
-}
-
-/* The slider itself */
-.slider {
-	-webkit-appearance: none;
-	width: 200px;
-	height: 15px;
-	border-radius: 5px;
-	background: #d3d3d3;
-	outline: none;
-	opacity: 0.7;
-	-webkit-transition: opacity .15s ease-in-out;
-	transition: opacity .15s ease-in-out;
-}
-
-.slider::-webkit-slider-thumb {
-	-webkit-appearance: none; /* Override default look */
-	appearance: none;
-	width: 25px; /* Set a specific slider handle width */
-	height: 25px; /* Slider handle height */
-	background: #04AA6D; /* Green background */
-	cursor: pointer; /* Cursor on hover */
-}
-
-/* Mouse-over effects */
-.slider:hover {
-	opacity: 1; /* Fully shown on mouse-over */
-}
-</style>
+<link rel="stylesheet" href="../css/add.css">
 
 </head>
 

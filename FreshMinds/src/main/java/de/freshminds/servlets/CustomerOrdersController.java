@@ -74,9 +74,7 @@ public class CustomerOrdersController extends HttpServlet {
 			deliveries.add(deliveryManager.getDeliveryByTransactionNumber(transaction.getTransactionNumber()));
 			int totalAmount = 0;
 			double totalPrice = 0.0;
-			System.out.println("transaction!");
 			for(Transaction transactionItem: transactionManager.getItemsByTransaction(transaction.getTransactionNumber())) {
-				System.out.println("transaction-item!");
 				totalAmount = totalAmount + transactionItem.getAmount();
 				totalPrice = totalPrice + transactionItem.getPrice();
 			}
